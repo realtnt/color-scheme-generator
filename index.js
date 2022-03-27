@@ -10,7 +10,6 @@ randomColor = Math.floor(Math.random() * 16777215)
 
 colorPicker.value = '#' + randomColor.toString(16)
 getColors()
-console.log(colorPicker.value)
 
 colorSchemeBtn.addEventListener("click", () => {
     getColors()
