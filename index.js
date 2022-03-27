@@ -36,7 +36,7 @@ function renderColors(colorsArray) {
     footerEl.innerHTML = colorsArray.map(color => {
         return `
             <p 
-                onclick="copyToClipboardAsync('${color.hex.value}')"
+                onclick="copyToClipboard('${color.hex.value}')"
                 class="color-hex">
                 ${color.hex.value}
             </p>
