@@ -91,7 +91,7 @@ footer {
 }
 
 #snackbar {
-    display: none;
+    visibility: hidden;
     position: fixed;
     font-weight: bold;
     font-size: 0.75rem;
@@ -106,16 +106,16 @@ footer {
 }
 
 #snackbar.show {
-    display: block;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    visibility: visible;
+    animation: fadein ease-out 0.5s, fadeout ease-out 0.5s 2.5s;
 }
 
 @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 1em; opacity: 1;}
+    0% {bottom: 0; opacity: 0;}
+    100% {bottom: 1em; opacity: 1;}
   }
 
 @keyframes fadeout {
-    from {bottom: 1em; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    0% {bottom: 1em; opacity: 1;}
+    100% {bottom: 0; opacity: 0;}
   }

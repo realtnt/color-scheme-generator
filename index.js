@@ -47,7 +47,7 @@ function renderColors(colorsArray) {
 function copyToClipboard(str) {
     copyToClipboardAsync(str)
     snackbar.className = "show"
-    setTimeout(() => snackbar.className = "", 2000)
+    setTimeout(() => snackbar.className = "", 2900)
 }
 
 function copyToClipboardAsync(str) {
