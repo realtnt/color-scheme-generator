@@ -7,7 +7,6 @@ const snackbar = document.getElementById("snackbar")
 const baseUrl = "https://www.thecolorapi.com/scheme"
 
 randomColor = Math.floor(Math.random() * 16777215)
-
 colorPicker.value = '#' + randomColor.toString(16)
 getColors()
 
@@ -25,18 +24,18 @@ function renderColors(colorsArray) {
     mainEl.innerHTML = colorsArray.map(color => {
         return `
             <div 
-                onclick="copyToClipboard('${color.hex.value}')"
+                onclick="copyToClipboardAsync('${color.hex.value}')"
                 class="colors" 
                 style="background-color: ${color.hex.value}">
                 <div class="color-name">${color.name.value}</div>
             </div>
-    `
+        `
     }).join('')
 
     footerEl.innerHTML = colorsArray.map(color => {
         return `
             <p 
-                onclick="copyToClipboard('${color.hex.value}')"
+                onclick="copyToClipboardAsync('${color.hex.value}')"
                 class="color-hex">
                 ${color.hex.value}
             </p>
@@ -44,14 +43,13 @@ function renderColors(colorsArray) {
     }).join('')
 }
 
-function copyToClipboard(str) {
-    copyToClipboardAsync(str)
-    snackbar.className = "show"
-    setTimeout(() => snackbar.className = "", 2900)
-}
-
 function copyToClipboardAsync(str) {
-    if (navigator && navigator.clipboard && navigator.clipboard.writeText)
-        return navigator.clipboard.writeText(str)
+    if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(str)
+            .then(() => {
+                snackbar.className = "show"
+                setTimeout(() => snackbar.className = "", 2900)
+            })
+    }
     return Promise.reject('The Clipboard API is not available.')
 }
