@@ -24,7 +24,7 @@ function renderColors(colorsArray) {
     mainEl.innerHTML = colorsArray.map(color => {
         return `
             <div 
-                onclick="copyToClipboardAsync('${color.hex.value}')"
+                onclick="copyToClipboard('${color.hex.value}')"
                 class="colors" 
                 style="background-color: ${color.hex.value}">
                 <div class="color-name">${color.name.value}</div>
@@ -35,7 +35,7 @@ function renderColors(colorsArray) {
     footerEl.innerHTML = colorsArray.map(color => {
         return `
             <p 
-                onclick="copyToClipboardAsync('${color.hex.value}')"
+                onclick="copyToClipboard('${color.hex.value}')"
                 class="color-hex">
                 ${color.hex.value}
             </p>
@@ -43,13 +43,25 @@ function renderColors(colorsArray) {
     }).join('')
 }
 
-function copyToClipboardAsync(str) {
+function copyToClipboard(str) {
     if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(str)
             .then(() => {
                 snackbar.className = "show"
                 setTimeout(() => snackbar.className = "", 2900)
-            })
+            }, error => { deprecatedCopyToClipboard(str) })
+    } else { // Clipboard API not supported
+        deprecatedCopyToClipboard(str)
     }
-    return Promise.reject('The Clipboard API is not available.')
+}
+
+function deprecatedCopyToClipboard(str) {
+    const area = document.createElement('textarea')
+    document.body.appendChild(area)
+    area.value = str
+    area.select()
+    document.execCommand('copy')
+    document.body.removeChild(area)
+    snackbar.className = "show"
+    setTimeout(() => snackbar.className = "", 2900)
 }
