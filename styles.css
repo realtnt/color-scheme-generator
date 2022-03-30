@@ -3,7 +3,10 @@ body {
     margin: 0;
     padding: 0;
     background: rgb(15,14,20);
-    background: linear-gradient(90deg, rgba(15,14,20,1) 0%, rgba(21,20,28,1) 50%, rgba(15,14,20,1) 100%);
+    background: linear-gradient(
+        90deg, rgba(15,14,20,1) 
+        0%, rgba(21,20,28,1) 
+        50%, rgba(15,14,20,1) 100%);
 }
 
 .container {
@@ -116,12 +119,12 @@ footer {
 @keyframes fadein {
     0% {bottom: 0; opacity: 0;}
     100% {bottom: 1em; opacity: 1;}
-  }
+}
 
 @keyframes fadeout {
     0% {bottom: 1em; opacity: 1;}
     100% {bottom: 0; opacity: 0;}
-  }
+}
 
 @media (max-width: 40rem) {
     header {
@@ -150,4 +153,4 @@ footer {
         flex: 1;
         font-size: 1em;
     }
-  }
+}
