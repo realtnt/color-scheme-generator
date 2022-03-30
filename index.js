@@ -63,17 +63,12 @@ function renderColors(colorsArray) {
                 class="colors" 
                 style="background-color: ${color.hex.value}">
                 <div class="color-name">${color.name.value}</div>
+                <button  
+                    onclick="copyToClipboard('${color.hex.value}')"
+                    class="color-hex">
+                    ${color.hex.value}
+                </button>
             </div>
-        `
-    }).join('')
-
-    footerEl.innerHTML = colorsArray.map(color => {
-        return `
-            <p 
-                onclick="copyToClipboard('${color.hex.value}')"
-                class="color-hex">
-                ${color.hex.value}
-            </p>
         `
     }).join('')
 }
